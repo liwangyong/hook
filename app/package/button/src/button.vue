@@ -1,7 +1,7 @@
 <template>
   <div
-    class="dazzling-button-box dazzling-flex-space"
-    :class="[disable && 'dazzling-button-disable']"
+    class="hook-button-box hook-flex-space"
+    :class="[disable && 'hook-button-disable']"
     @mousedown="changAssmblyType(2)"
     ref="button"
     @mouseup="changAssmblyType(1)"
@@ -15,13 +15,13 @@
       color: textColor
     }"
   >
-    <div class="dazzling-button-ctn">
-      <div v-if="loading" class="dazzling-button-loading">
+    <div class="hook-button-ctn">
+      <div v-if="loading" class="hook-button-loading">
         <slot name="loading">
           <span>加载</span>
         </slot>
       </div>
-      <div class="dazzling-button-text">
+      <div class="hook-button-text">
         <slot><span>按钮</span></slot>
       </div>
     </div>
@@ -58,7 +58,7 @@ interface DomPosition {
 }
 import { computed, defineComponent, ref } from "vue";
 export default defineComponent({
-  name: "DazzlingButton",
+  name: "HookButton",
   props: {
     width: {
       default: 85,
@@ -157,11 +157,11 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.dazzling-button-disable {
+.hook-button-disable {
   pointer-events: none;
   background: #c8c9cc !important;
 }
-.dazzling-button-box {
+.hook-button-box {
   user-select: none;
   border-radius: 4px;
   padding: 0px 10px;
@@ -172,7 +172,7 @@ export default defineComponent({
   cursor: pointer;
   pointer-events: auto;
   transition: all 0.3s;
-  .dazzling-button-ctn {
+  .hook-button-ctn {
     z-index: 10;
     position: absolute;
     .button-text {

@@ -1,4 +1,4 @@
-import { DazzlingButton } from "./button";
+import { HookButton } from "./button";
 export interface InstallationOptions {
   locale: any;
   i18n: any;
@@ -9,4 +9,4 @@ export const version: string;
 
 export function install(vue: typeof Vue, options: InstallationOptions): void;
 
-export const Button: DazzlingButton;
+export const Button: HookButton;

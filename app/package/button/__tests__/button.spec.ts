@@ -8,7 +8,7 @@ describe(`${Button.name}.vue`, () => {
         loading: true
       }
     });
-    expect(wrapper.find(".dazzling-button-loading").exists()).toBe(true);
+    expect(wrapper.find(".hook-button-loading").exists()).toBe(true);
   });
   it("disable", () => {
     const wrapper = mount<any>(Button, {
@@ -16,6 +16,6 @@ describe(`${Button.name}.vue`, () => {
         disable: true
       }
     });
-    expect(wrapper.find(".dazzling-button-disable").exists()).toBe(true);
+    expect(wrapper.find(".hook-button-disable").exists()).toBe(true);
   });
 });
