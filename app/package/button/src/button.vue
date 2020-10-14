@@ -1,0 +1,211 @@
+<template>
+  <div
+    class="dazzling-button-box dazzling-flex-space"
+    :class="[disable && 'dazzling-button-disable']"
+    @mousedown="changAssmblyType(2)"
+    ref="button"
+    @mouseup="changAssmblyType(1)"
+    @click="handleClick"
+    @mouseenter="changAssmblyType(1)"
+    @mouseleave="changAssmblyType(0)"
+    :style="{
+      width: `${width}px`,
+      height: `${height}px`,
+      backgroundColor: bgColor,
+      color: textColor
+    }"
+  >
+    <div class="dazzling-button-ctn">
+      <div v-if="loading" class="dazzling-button-loading">
+        <slot name="loading">
+          <span>加载</span>
+        </slot>
+      </div>
+      <div class="dazzling-button-text">
+        <slot><span>按钮</span></slot>
+      </div>
+    </div>
+    <transition-group
+      name="moire-list"
+      tag="ul"
+      @after-enter="() => this.rippleArgs.shift()"
+    >
+      <li
+        v-for="(item, index) in rippleArgs"
+        :key="index"
+        :style="{
+          top: `-${currtWidth - item.top}px`,
+          left: `-${currtWidth - item.left}px`,
+          width: `${currtWidth * 2}px`,
+          height: `${currtWidth * 2}px`,
+          borderRadius: `${currtWidth}px`,
+          backgroundColor: moireColor,
+          transition: `all ${duration}s`
+        }"
+      ></li>
+    </transition-group>
+  </div>
+</template>
+<script lang="ts">
+enum CURRTTYPEENUM {
+  USUAL,
+  HOVER,
+  PRESS
+}
+interface DomPosition {
+  top: number;
+  left: number;
+}
+import { computed, defineComponent, ref } from "vue";
+export default defineComponent({
+  name: "DazzlingButton",
+  props: {
+    width: {
+      default: 85,
+      type: Number
+    },
+    height: {
+      default: 36,
+      type: Number
+    },
+    loading: {
+      default: false,
+      type: Boolean
+    },
+    // 平常背景色
+    backgroundColor: {
+      default: "rgba(0, 165, 237, 1)",
+      type: String
+    },
+    // 文字颜色
+    textColor: {
+      default: "#fff",
+      type: String
+    },
+    // hover
+    hoverColor: {
+      default: "rgba(103, 194, 255, 1)",
+      type: String
+    },
+    // 按压时 背景色
+    pressColor: {
+      default: "rgba(0, 140, 201, 1)",
+      type: String
+    },
+    // 波浪
+    moireColor: {
+      default: "rgba(0, 140, 201, 1)",
+      type: String
+    },
+    duration: {
+      default: 1.2,
+      type: Number
+    },
+    disable: {
+      default: false,
+      type: Boolean
+    }
+  },
+  data() {
+    return {
+      refButton: null,
+      currtWidth: 0
+    };
+  },
+  emits: ["click"],
+  setup(prop, ctx) {
+    const assemblyType = ref<CURRTTYPEENUM>(CURRTTYPEENUM.USUAL);
+    const rippleArgs = ref<Array<DomPosition>>([]);
+    const bgColor = computed((): string => {
+      switch (assemblyType.value) {
+        case CURRTTYPEENUM.USUAL:
+          return prop.backgroundColor;
+        case CURRTTYPEENUM.HOVER:
+          return prop.hoverColor;
+        case CURRTTYPEENUM.PRESS:
+          return prop.pressColor;
+      }
+      return prop.backgroundColor;
+    });
+    const handleClick = (e: MouseEvent) => {
+      const { clientY: top, clientX: left } = e;
+      rippleArgs.value.push({
+        top,
+        left
+      });
+      ctx.emit("click", e);
+    };
+    return {
+      assemblyType,
+      bgColor,
+      rippleArgs,
+      handleClick
+    };
+  },
+  mounted() {
+    this.refButton = this.$refs.button as HTMLElement;
+    const { refButton } = this;
+    this.currtWidth = refButton.clientWidth;
+  },
+  methods: {
+    changAssmblyType(type: CURRTTYPEENUM) {
+      this.assemblyType = type;
+    }
+  }
+});
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+.dazzling-button-disable {
+  pointer-events: none;
+  background: #c8c9cc !important;
+}
+.dazzling-button-box {
+  user-select: none;
+  border-radius: 4px;
+  padding: 0px 10px;
+  font-size: 14px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s;
+  .dazzling-button-ctn {
+    z-index: 10;
+    position: absolute;
+    .button-text {
+      pointer-events: none;
+    }
+    .button-loading {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+ul {
+  top: 0;
+  left: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  z-index: 1;
+  position: absolute;
+}
+li {
+  pointer-events: none;
+  list-style: none;
+  position: absolute;
+  opacity: 0;
+  transform: scale(1);
+  transform-origin: center center;
+  z-index: 1;
+}
+.moire-list-enter-from {
+  transform: scale(0.01);
+  opacity: 1;
+  transform-origin: center center;
+}
+</style>
