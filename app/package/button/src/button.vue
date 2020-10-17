@@ -174,6 +174,9 @@ export default defineComponent({
   transition: all 0.3s;
   .hook-button-ctn {
     z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     position: absolute;
     .button-text {
       pointer-events: none;

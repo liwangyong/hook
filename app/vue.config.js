@@ -1,4 +1,11 @@
 module.exports = {
+  chainWebpack: config => {
+    // 解决ie11兼容ES6
+    config
+      .entry("main")
+      .add("babel-polyfill")
+      .end();
+  },
   css: {
     sourceMap: false,
     loaderOptions: {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
 module.exports = plop => {
@@ -35,6 +36,25 @@ module.exports = plop => {
           __dirname,
           "../plop-templates/src/template.hbs"
         )
+      },
+      {
+        type: "add",
+        path: path.resolve(__dirname, "../types/{{kebabCase name}}.d.ts"),
+        templateFile: path.resolve(
+          __dirname,
+          "../plop-templates/template.d.ts.hbs"
+        )
+      },
+      {
+        type: "append",
+        path: path.resolve(__dirname, "../package/index.ts"),
+        template:
+          "export { default as {{titleCase name}} } from './{{kebabCase name}}'"
+      },
+      {
+        type: "append",
+        path: path.resolve(__dirname, "../lib/index.js"),
+        template: "export { {{titleCase name}} } from './{{kebabCase name}}'"
       }
     ]
   });
