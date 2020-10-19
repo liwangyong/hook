@@ -102,7 +102,7 @@ export default defineComponent({
       type: Number
     },
     disable: {
-      default: false,
+      default: true,
       type: Boolean
     }
   },
@@ -128,7 +128,8 @@ export default defineComponent({
       return prop.backgroundColor;
     });
     const handleClick = (e: MouseEvent) => {
-      const { clientY: top, clientX: left } = e;
+      if (prop.disable) return;
+      const { offsetY: top, offsetX: left } = e;
       rippleArgs.value.push({
         top,
         left
@@ -158,8 +159,11 @@ export default defineComponent({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .hook-button-disable {
-  pointer-events: none;
-  background: #c8c9cc !important;
+  cursor: not-allowed !important;
+  border: 1px solid #c8c9cc;
+  color: #c8c9cc !important;
+  background: transparent !important;
+  transition: all 0.3s;
 }
 .hook-button-box {
   user-select: none;
@@ -176,6 +180,7 @@ export default defineComponent({
     z-index: 10;
     top: 50%;
     left: 50%;
+    pointer-events: none;
     transform: translate(-50%, -50%);
     position: absolute;
     .button-text {

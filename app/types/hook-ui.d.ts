@@ -1,4 +1,5 @@
 import { HookButton } from "./button";
+import { HookAlert } from "./alert";
 export interface InstallationOptions {
   locale: any;
   i18n: any;
@@ -9,4 +10,6 @@ export const version: string;
 
 export function install(vue: typeof Vue, options: InstallationOptions): void;
 
-export const Button: HookButton;
+export { HookButton };
+
+export { HookAlert };

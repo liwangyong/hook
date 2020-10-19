@@ -49,12 +49,24 @@ module.exports = plop => {
         type: "append",
         path: path.resolve(__dirname, "../package/index.ts"),
         template:
-          "export { default as {{titleCase name}} } from './{{kebabCase name}}'"
+          "export { default as Hook{{titleCase name}} } from './{{kebabCase name}}'"
       },
       {
         type: "append",
-        path: path.resolve(__dirname, "../lib/index.js"),
-        template: "export { {{titleCase name}} } from './{{kebabCase name}}'"
+        path: path.resolve(__dirname, "../lib/index.ts"),
+        template:
+          "export { Hook{{titleCase name}} } from '../package/{{kebabCase name}}'"
+      },
+      {
+        type: "append",
+        path: path.resolve(__dirname, "../types/hook-ui.d.ts"),
+        template:
+          "import { Hook{{titleCase name}} } from './{{kebabCase name}}'"
+      },
+      {
+        type: "append",
+        path: path.resolve(__dirname, "../types/hook-ui.d.ts"),
+        template: "export {Hook{{titleCase name}}}"
       }
     ]
   });

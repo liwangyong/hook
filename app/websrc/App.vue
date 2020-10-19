@@ -1,13 +1,10 @@
 <template>
-  <Button @click="click">按钮</Button>
+  <div></div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import Button from "../package/button/src/button.vue";
 export default defineComponent({
-  components: {
-    Button
-  }
+  components: {}
 });
 </script>
 <style lang="scss">

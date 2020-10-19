@@ -1,7 +1,7 @@
 import { App } from "vue";
-import Button from "./src/button.vue";
+import HookButton from "./src/button.vue";
 export default (app: App): void => {
-  app.component(Button.name, Button);
+  app.component(HookButton.name, HookButton);
 };
 
-export { Button };
+export { HookButton };
