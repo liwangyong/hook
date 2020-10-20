@@ -18,7 +18,7 @@
     <div class="hook-button-ctn">
       <div v-if="loading" class="hook-button-loading">
         <slot name="loading">
-          <span>加载</span>
+          <HookLoading color="#fff" width="16px"></HookLoading>
         </slot>
       </div>
       <div class="hook-button-text">
@@ -47,6 +47,7 @@
   </div>
 </template>
 <script lang="ts">
+import HookLoading from "@package/loading/src/loading.vue";
 enum CURRTTYPEENUM {
   USUAL,
   HOVER,
@@ -69,7 +70,7 @@ export default defineComponent({
       type: Number
     },
     loading: {
-      default: false,
+      default: true,
       type: Boolean
     },
     // 平常背景色
@@ -105,6 +106,9 @@ export default defineComponent({
       default: false,
       type: Boolean
     }
+  },
+  components: {
+    HookLoading
   },
   data() {
     return {
@@ -161,14 +165,14 @@ export default defineComponent({
 .hook-button-disable {
   cursor: not-allowed !important;
   border: 1px solid #c8c9cc;
-  color: #c8c9cc !important;
+  color: $delete_color !important;
   background: transparent !important;
   transition: all 0.3s;
 }
 .hook-button-box {
   user-select: none;
   border-radius: 4px;
-  padding: 0px 10px;
+  padding: 0px 6px;
   font-size: 14px;
   overflow: hidden;
   position: relative;
@@ -177,17 +181,24 @@ export default defineComponent({
   pointer-events: auto;
   transition: all 0.3s;
   .hook-button-ctn {
+    width: 100%;
+    height: 100%;
     z-index: 10;
     top: 50%;
     left: 50%;
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
     pointer-events: none;
     transform: translate(-50%, -50%);
     position: absolute;
-    .button-text {
-      pointer-events: none;
-    }
-    .button-loading {
+    .hook-button-text {
       display: flex;
+      align-items: center;
+    }
+    .hook-button-loading {
+      display: flex;
+      margin-right: 6px;
       align-items: center;
     }
   }

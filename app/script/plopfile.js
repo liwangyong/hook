@@ -66,7 +66,7 @@ module.exports = plop => {
       {
         type: "append",
         path: path.resolve(__dirname, "../types/hook-ui.d.ts"),
-        template: "export {Hook{{titleCase name}}}"
+        template: "export { Hook{{titleCase name}} }"
       }
     ]
   });

@@ -14,3 +14,5 @@ export default {
 export {}
 export { HookButton } from "../package/button";
 export { HookAlert } from "../package/alert";
+
+export { HookLoading } from '../package/loading'
