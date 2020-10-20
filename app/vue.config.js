@@ -1,13 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
+const isDevelopment = process.env.NODE_ENV === "development";
 module.exports = {
   pages: {
     index: {
-      entry: path.resolve(__dirname, "./lib/index.ts")
+      entry: path.resolve(
+        __dirname,
+        isDevelopment ? "./websrc/main.ts" : "./lib/index.ts"
+      )
     }
   },
   productionSourceMap: false,
   chainWebpack: config => {
+    config.resolve.alias
+      .set("@", resolve("websrc"))
+      .set("@package", resolve("package"));
     config.module
       .rule("js")
       .include.add("/packages")

@@ -6,7 +6,7 @@ npm install hooks-ui
 ```
 
 ```
-import all from "hooks-ui";
+import HooksUi from "hooks-ui";
 ```
 
 ```
