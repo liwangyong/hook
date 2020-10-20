@@ -1,24 +1,26 @@
 # app
 
-## Project setup
+## 素质三连
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm install hooks-ui
 ```
 
-### Compiles and minifies for production
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+import all from "hooks-ui";
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+import "hooks-ui/dist/hooks-ui.css";
+```
+
+## 使用
+```
+Vue.use(hooks-ui)
+```
+
+```
+Vue.component(hooks-button)
+```
+
+## Welcome
+有问题 欢迎 Issuse [Hey][Hey][Hey] [Configuration Reference](https://github.com/liwangyong/hook/tree/main/app).

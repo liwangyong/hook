@@ -102,7 +102,7 @@ export default defineComponent({
       type: Number
     },
     disabled: {
-      default: true,
+      default: false,
       type: Boolean
     }
   },
