@@ -1,4 +1,5 @@
 /** Button Component */
+import { HookUIComponent } from "./compontent";
 export declare class HookButton extends HookUIComponent {
   /** 按键宽度 */
   width: number;

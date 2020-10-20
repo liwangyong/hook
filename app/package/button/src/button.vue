@@ -1,7 +1,7 @@
 <template>
   <div
     class="hook-button-box hook-flex-space"
-    :class="[disable && 'hook-button-disable']"
+    :class="[disabled && 'hook-button-disable']"
     @mousedown="changAssmblyType(2)"
     ref="button"
     @mouseup="changAssmblyType(1)"
@@ -101,7 +101,7 @@ export default defineComponent({
       default: 1.2,
       type: Number
     },
-    disable: {
+    disabled: {
       default: true,
       type: Boolean
     }
@@ -128,7 +128,7 @@ export default defineComponent({
       return prop.backgroundColor;
     });
     const handleClick = (e: MouseEvent) => {
-      if (prop.disable) return;
+      if (prop.disabled) return;
       const { offsetY: top, offsetX: left } = e;
       rippleArgs.value.push({
         top,

@@ -1,12 +1,11 @@
 {
   "name": "hooks-ui",
-  "version": "0.1.9",
+  "version": "0.3.1",
   "private": false,
   "author": "hookview",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name hooks-ui ",
-    "build:lib": "webpack --config ./build/webpack.config.js",
+    "build": "vue-cli-service build --target lib ./lib/index.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test": "jest",
@@ -70,5 +69,6 @@
     "dist"
   ],
   "typings": "types/index.d.ts",
-  "main": "dist/index.js"
+  "main": "dist/hooks-ui.umd.min.js",
+  "style": "dist/hooks-ui.css"
 }

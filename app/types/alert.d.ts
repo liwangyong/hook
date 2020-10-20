@@ -1,3 +1,3 @@
 /** Alert Component */
-export declare class Alert extends HookUIComponent {
-}
+import { HookUIComponent } from "./compontent";
+export declare class HookAlert extends HookUIComponent {}

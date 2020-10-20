@@ -1,34 +1,40 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
-const babelOptions = {
-  plugins: ["@vue/babel-plugin-jsx"]
-};
 module.exports = {
+  pages: {
+    index: {
+      entry: path.resolve(__dirname, "./lib/index.ts")
+    }
+  },
   productionSourceMap: false,
   chainWebpack: config => {
-    // 解决ie11兼容ES6
-    config
-      .entry("main")
-      .add("babel-polyfill")
-      .end();
+    config.module
+      .rule("js")
+      .include.add("/packages")
+      .end()
+      .use("babel")
+      .loader("babel-loader")
+      .tap(options => {
+        // 修改它的选项...
+        return options;
+      });
   },
   css: {
     sourceMap: false,
     loaderOptions: {
       sass: {
-        prependData: `@import "@/assets/scss/index.scss";`
+        prependData: `@import "websrc/assets/scss/index.scss";`
       }
     }
   },
   configureWebpack: {
-    entry: path.resolve(__dirname, "./lib/index.ts"),
     output: {
       path: path.resolve(__dirname, "./dist"),
       publicPath: "/",
       libraryExport: "default",
       filename: "index.js",
       library: "HOOKSUI",
-      libraryTarget: "amd",
+      libraryTarget: "umd",
       umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
     },
     resolve: {
