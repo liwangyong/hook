@@ -70,7 +70,7 @@ export default defineComponent({
       type: Number
     },
     loading: {
-      default: true,
+      default: false,
       type: Boolean
     },
     // 平常背景色
@@ -117,7 +117,7 @@ export default defineComponent({
     };
   },
   emits: ["click"],
-  setup(prop, ctx) {
+  setup(prop, { emit }) {
     const assemblyType = ref<CURRTTYPEENUM>(CURRTTYPEENUM.USUAL);
     const rippleArgs = ref<Array<DomPosition>>([]);
     const bgColor = computed((): string => {
@@ -138,7 +138,7 @@ export default defineComponent({
         top,
         left
       });
-      ctx.emit("click", e);
+      emit("click", e);
     };
     return {
       assemblyType,

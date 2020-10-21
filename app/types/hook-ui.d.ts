@@ -10,4 +10,4 @@ export { HookButton };
 
 export { HookAlert };
 
-export {HookLoading}
+export { HookLoading }

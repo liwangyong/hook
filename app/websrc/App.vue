@@ -1,15 +1,29 @@
 <template>
-  <HookLoading></HookLoading>
-  <HookButton></HookButton>
+  <HookButton @click="xxx = true"></HookButton>
+  <HookAlert v-model="xxx" @change="xx">
+    <HookLoading color="#fff"></HookLoading>
+  </HookAlert>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import HookLoading from "@package/loading/src/loading.vue";
 import HookButton from "@package/button/src/button.vue";
+import HookAlert from "@package/alert/src/alert.vue";
 export default defineComponent({
   components: {
     HookLoading,
-    HookButton
+    HookButton,
+    HookAlert
+  },
+  data() {
+    return {
+      xxx: true
+    };
+  },
+  methods: {
+    xx() {
+      console.log("来了");
+    }
   }
 });
 </script>
