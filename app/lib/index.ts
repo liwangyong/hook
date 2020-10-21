@@ -16,3 +16,4 @@ export { HookButton } from "../package/button";
 export { HookAlert } from "../package/alert";
 
 export { HookLoading } from '../package/loading'
+export { HookInput } from '../package/input'

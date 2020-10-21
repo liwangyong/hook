@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import Button from "../src/button.vue";
 
 describe(`${Button.name}.vue`, () => {
-  it("loading", () => {
+  it("button-loading", () => {
     const wrapper = mount<any>(Button, {
       props: {
         loading: true
@@ -10,7 +10,7 @@ describe(`${Button.name}.vue`, () => {
     });
     expect(wrapper.find(".hook-button-loading").exists()).toBe(true);
   });
-  it("disable", () => {
+  it("button-disable", () => {
     const wrapper = mount<any>(Button, {
       props: {
         disabled: true
