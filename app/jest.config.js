@@ -1,6 +1,7 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
-
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
 module.exports = {
   globals: {
     // work around: https://github.com/kulshekhar/ts-jest/issues/748#issuecomment-423528659
@@ -35,5 +36,9 @@ module.exports = {
         plugins: ["@vue/babel-plugin-jsx"]
       }
     ]
+  },
+  rootDir: path.join(__dirname, "./"),
+  moduleNameMapper: {
+    "@package(.*)$": "<rootDir>/package$1"
   }
 };

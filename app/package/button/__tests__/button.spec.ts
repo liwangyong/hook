@@ -13,7 +13,7 @@ describe(`${Button.name}.vue`, () => {
   it("disable", () => {
     const wrapper = mount<any>(Button, {
       props: {
-        disable: true
+        disabled: true
       }
     });
     expect(wrapper.find(".hook-button-disable").exists()).toBe(true);
