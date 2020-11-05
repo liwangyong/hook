@@ -3,21 +3,29 @@
   <HookAlert v-model="xxx" @change="xx">
     <HookLoading color="#fff"></HookLoading>
   </HookAlert>
+  <HookInput v-model="xxaa" :validity="() => false">
+    <!-- <template #suffix>
+      xxx
+    </template> -->
+  </HookInput>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import HookLoading from "@package/loading/src/loading.vue";
 import HookButton from "@package/button/src/button.vue";
 import HookAlert from "@package/alert/src/alert.vue";
+import HookInput from "@package/input/src/input.vue";
 export default defineComponent({
   components: {
     HookLoading,
     HookButton,
-    HookAlert
+    HookAlert,
+    HookInput
   },
   data() {
     return {
-      xxx: true
+      xxx: false,
+      xxaa: null
     };
   },
   methods: {
@@ -32,7 +40,6 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

@@ -57,7 +57,7 @@ type DomPosition = {
   top: number;
   left: number;
 };
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, Ref, ref } from "vue";
 export default defineComponent({
   name: "HookButton",
   props: {
@@ -171,13 +171,13 @@ export default defineComponent({
 }
 .hook-button-box {
   user-select: none;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 0px 6px;
   font-size: 14px;
   overflow: hidden;
   position: relative;
-  border-radius: 4px;
   cursor: pointer;
+  display: inline-block;
   pointer-events: auto;
   transition: all 0.3s;
   .hook-button-ctn {
