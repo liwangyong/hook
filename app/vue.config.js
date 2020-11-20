@@ -38,6 +38,26 @@ module.exports = {
     }
   },
   configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.md$/,
+          use: [
+            {
+              loader: "vue-loader",
+              options: {
+                compilerOptions: {
+                  preserveWhitespace: false
+                }
+              }
+            },
+            {
+              loader: path.resolve(__dirname, "./md-loader/index.js")
+            }
+          ]
+        }
+      ]
+    },
     output: {
       path: path.resolve(__dirname, "./dist"),
       publicPath: "/",
@@ -48,7 +68,7 @@ module.exports = {
       umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define。
     },
     resolve: {
-      extensions: [".js", ".vue", ".json", ".ts", ".tsx"] // 加入ts 和 tsx
+      extensions: [".js", ".vue", ".json", ".ts", ".tsx", "md"] // 加入ts 和 tsx
     },
     //或者
     //警告 webpack 的性能提示

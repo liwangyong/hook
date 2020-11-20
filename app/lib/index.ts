@@ -11,7 +11,6 @@ const install: any = (Vue: App, option: any) => {
 export default {
   install
 };
-export {}
 export { HookButton } from "../package/button";
 export { HookAlert } from "../package/alert";
 

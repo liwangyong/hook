@@ -57,7 +57,7 @@ type DomPosition = {
   top: number;
   left: number;
 };
-import { computed, defineComponent, Ref, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 export default defineComponent({
   name: "HookButton",
   props: {

@@ -3,3 +3,9 @@ declare module "*.vue" {
   const component: ReturnType<typeof defineComponent>;
   export default component;
 }
+
+declare module "*.md" {
+  import { defineComponent } from "vue";
+  const component: ReturnType<typeof defineComponent>;
+  export default any;
+}

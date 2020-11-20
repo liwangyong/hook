@@ -8,7 +8,6 @@
       <div class="hooks-display-inline-block"><slot name="prefix"></slot></div>
     </transition>
     <input
-      :style="{ width: width, height: height }"
       :type="type"
       :value="modelValue"
       :placeholder="placeholder"
@@ -25,7 +24,9 @@
       <span @click="modelEmitValue('')" class="hook-input-clearable">x</span>
     </template>
     <transition name="fade">
-      <div class="hooks-display-inline-block"><slot name="suffix"></slot></div>
+      <div class="hooks-display-inline-block suffix">
+        <slot name="suffix"></slot>
+      </div>
     </transition>
     <transition name="fade">
       <template v-if="isVerification">
@@ -53,14 +54,6 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
-    },
-    width: {
-      type: String,
-      default: "180px"
-    },
-    height: {
-      type: String,
-      default: "24px"
     },
     clearable: {
       type: Boolean,
@@ -91,7 +84,7 @@ export default defineComponent({
       default: "请输入数据"
     }
   },
-  emits: [MODELEVENT, "blur", "change"],
+  emits: [MODELEVENT, "blur", "change", "input"],
   setup(props, { emit }) {
     const focus = ref<boolean>(props.autofocus);
     const isComposition = ref<boolean>(true);
@@ -102,6 +95,7 @@ export default defineComponent({
     };
     const modelInput = event => {
       const { value } = event.target;
+      emit("input", value);
       if (isComposition.value) {
         modelEmitValue(value);
       }
@@ -145,15 +139,15 @@ export default defineComponent({
 <style scoped lang="scss">
 .hook-input-box {
   width: auto;
-  height: auto;
-  padding: 4px;
-  display: inline-block;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
   border-radius: 3px;
   border: 1px solid $delete_color;
   position: relative;
   transition: border-color 0.3s;
   &:hover {
-    border: 1px solid $select_color;
+    border: 1px solid $secondary;
   }
   &:hover .hook-input-clearable {
     opacity: 1;
@@ -170,6 +164,8 @@ export default defineComponent({
     color: $danger_color;
   }
   input {
+    width: 170px;
+    height: 24px;
     outline: 0;
     border: 0px;
     color: $plain_color;
@@ -185,12 +181,18 @@ export default defineComponent({
     justify-content: center;
     width: 16px;
     height: 16px;
+    line-height: 16px;
     border-radius: 100%;
     color: $delete_color;
     border: 1px solid $delete_color !important;
     margin-right: 5px;
     // font-size: 18px;
     cursor: pointer;
+  }
+  .suffix {
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
   }
 }
 .hook-fouce-input-box {
