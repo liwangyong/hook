@@ -1,1 +1,1 @@
-# vue3.0 + ts + jest + plop + md
+# vue3.0 + ts
