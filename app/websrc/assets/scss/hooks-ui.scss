@@ -4,6 +4,12 @@
   align-items: center;
   //   align-content: center;
 }
+.md-bg {
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+  background-color: rgba(79, 133, 79, 0.5);
+}
 .hooks-disable {
   cursor: not-allowed !important;
 }

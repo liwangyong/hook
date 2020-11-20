@@ -9,21 +9,21 @@
 ```
 
 ### 代码
-基础用法  
-`<HookButton>按钮</HookButton>`
 
-### Slot
+基础用法
+
+`<HookButton>按钮</HookButton>`
 
 ### Attributes
 
 | 参数名称        | 说明     | 属性    | 默认值               |
-| --------------- | -------- | ------- | -------------------- |
-| width           | 宽度     | Number  | 85                   |
-| height          | 高度     | Number  | 36                   |
-| loading         | 是否加载 | Boolean | false                |
-| backgroundColor | 背景色   | String  | rgba(0, 165, 237, 1) |
-| textColor       | 文字颜色 | String  | #fff                 |
-| pressColor      | 按压颜色 | String  | rgba(0, 140, 201, 1) |
-| moireColor      | 波浪颜色 | String  | rgba(0, 140, 201, 1) |
-| duration        | 动画时间 | Number  | 1.2                  |
-| disabled        | 是否禁用 | Boolean | false                |
+| :-------------- | :------- | :------ | :------------------- |
+| `width`           | 宽度     | Number  | 85                   |
+| `height`          | 高度     | Number  | 36                   |
+| `loading`         | 是否加载 | Boolean | false                |
+| `backgroundColor` | 背景色   | String  | rgba(0, 165, 237, 1) |
+| `textColor`       | 文字颜色 | String  | #fff                 |
+| `pressColor`      | 按压颜色 | String  | rgba(0, 140, 201, 1) |
+| `moireColor`      | 波浪颜色 | String  | rgba(0, 140, 201, 1) |
+| `duration`        | 动画时间 | Number  | 1.2                  |
+| `disabled`        | 是否禁用 | Boolean | false                |
