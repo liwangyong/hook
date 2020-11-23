@@ -14,7 +14,7 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    background: #ccc;
+    background: #f2f2f2;
     border-radius: 2px;
   }
   h2 {
@@ -27,6 +27,12 @@
     tr {
       border-bottom: 1px solid #ccc;
       height: 50px;
+    }
+    code {
+      background-color: #f9fafc;
+      padding: 0 4px;
+      border: 1px solid #eaeefb;
+      border-radius: 4px;
     }
   }
 }

@@ -1,6 +1,10 @@
 <template>
   <div class="hooks-scroll-bar">
-    <div class="auto"><router-view /></div>
+    <div class="auto">
+      <transition name="fade">
+        <router-view />
+      </transition>
+    </div>
   </div>
 </template>
 <script lang="ts">

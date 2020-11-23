@@ -1,0 +1,20 @@
+type Route = {
+  path: string;
+  name?: string;
+  fnc: Promise<typeof import("*.md") | typeof import("*.vue")>;
+};
+
+type RouterMenu = Array<Route>;
+
+export const routerMenu: RouterMenu = [
+  {
+    path: "/",
+    name: "/",
+    fnc: import("../docs/button.md")
+  },
+  {
+    path: "/button",
+    name: "/Button",
+    fnc: import("../docs/button.md")
+  }
+];
