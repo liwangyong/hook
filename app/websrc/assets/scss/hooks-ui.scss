@@ -5,10 +5,30 @@
   //   align-content: center;
 }
 .md-bg {
-  width: 100vw;
+  width: 850px;
   height: 100vh;
   padding: 10px;
-  background-color: rgba(79, 133, 79, 0.5);
+  margin: auto;
+  .high-code {
+    margin-top: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background: #ccc;
+    border-radius: 2px;
+  }
+  h2 {
+    font-size: 22px;
+    margin: 20px 0px 10px 0px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    tr {
+      border-bottom: 1px solid #ccc;
+      height: 50px;
+    }
+  }
 }
 .hooks-disable {
   cursor: not-allowed !important;

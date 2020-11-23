@@ -3,21 +3,21 @@
 水波纹常用的操作按钮。
 
 ## 使用示例
-
 ```html
 <hook-button></hook-button>
 ```
 
-### 代码
+## 代码
 
 基础用法
+```
+<hook-button></hook-button>
+```
 
-`<HookButton>按钮</HookButton>`
+## Attributes
 
-### Attributes
-
-| 参数名称        | 说明     | 属性    | 默认值               |
-| :-------------- | :------- | :------ | :------------------- |
+| 参数名称          | 说明     | 属性    | 默认值               |
+| :---------------- | :------- | :------ | :------------------- |
 | `width`           | 宽度     | Number  | 85                   |
 | `height`          | 高度     | Number  | 36                   |
 | `loading`         | 是否加载 | Boolean | false                |
