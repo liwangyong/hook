@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { mdPlugin } = require("./until");
+const { mdPlugin } = require("./container-plugin");
+const {
+  scriptExtract,
+  styleExtract,
+  templateExtract,
+  deleteScript
+} = require("./until");
 const md = require("markdown-it")({
   html: true,
   xhtmlOut: true,
@@ -9,12 +15,22 @@ const md = require("markdown-it")({
 });
 mdPlugin(md);
 module.exports = content => {
-  const htmlsStr = `
-  <template>
-  <div class='md-bg'>
-  ${md.render(content)}
-  </div>
-  </template>
-`;
-  return htmlsStr;
+  const outCtn = [];
+  outCtn.push(
+    `
+      <template>
+        <div class='md-bg'>
+        ${deleteScript(md.render(content))}
+        </div>
+      </template>
+      `
+  );
+  const scriptStr = `
+    <script lang='ts'>
+          ${scriptExtract(content)}
+    </script>
+      `;
+  outCtn.push(scriptStr);
+  outCtn.push(`<style scoped lang="scss">${styleExtract(content)}</style>`);
+  return outCtn.join("");
 };

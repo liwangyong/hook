@@ -1,43 +1,30 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const mdItContainer = require("markdown-it-container");
-const hljs = require("highlight.js");
-const mdPlugin = md => {
-  md.use(mdItContainer, "demo", {
-    validate(params) {
-      return params.trim().match(/^demo\s+(.*)$/);
-    },
-    render(tokens, idx) {
-      const ctrnList = tokens
-        .map((item, index) => {
-          if (item.type === "fence" && index !== idx - 1) {
-            return item.content.split(" ");
-          }
-        })
-        .flat()
-        .filter(Boolean);
-      const m = tokens[idx].info.trim().match(/^demo\s+(.*)$/);
-      if (tokens[idx].nesting === 1 && (m || []).length) {
-        return `
-          ${ctrnList.join("")}
-          <details open>
-            <summary> ${m[1]} (code) </summary>
-            <div class='high-code'>
-              ${ctrnList
-                .map(
-                  item =>
-                    `<div class='block'>${
-                      hljs.highlight("html", item).value
-                    }</div>`
-                )
-                .join("")}
-            </div>
-        `;
-      } else {
-        return "</details>";
-      }
-    }
-  });
+const sliceFn = sliceCtr => {
+  return sliceCtr && sliceCtr.slice(1, sliceCtr.length - 2);
+};
+const templateExtract = str => {
+  const replaceStr = str.split("template");
+  return sliceFn(replaceStr && replaceStr[1]) || str;
+};
+const styleExtract = str => {
+  const replaceStr = str.split("style");
+  return sliceFn(replaceStr && replaceStr[1]) || "";
+};
+const scriptExtract = str => {
+  const replaceStr = str.split("script");
+  return sliceFn(replaceStr && replaceStr[1]) || "";
+};
+const deleteScript = str => {
+  const start = str.indexOf("<script>");
+  const end = str.indexOf("</script>");
+  if (start !== -1 && end !== -1) {
+    return str.slice(0, start) + str.slice(end + 9);
+  } else {
+    return str;
+  }
 };
 module.exports = {
-  mdPlugin
+  scriptExtract,
+  deleteScript,
+  templateExtract,
+  styleExtract
 };

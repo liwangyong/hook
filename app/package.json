@@ -69,6 +69,7 @@
     "vue-template-compiler": "^2.6.12",
     "webpack-cli": "^4.0.0"
   },
+  "eslintIgnore": ["*.md"],
   "files": [
     "types",
     "dist"
