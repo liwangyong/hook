@@ -16,10 +16,10 @@ export const routerMenu: RouterMenu = [
     path: "/button",
     name: "/Button",
     fnc: import("../docs/button.md")
+  },
+  {
+    path: "/input",
+    name: "/Input",
+    fnc: import("../docs/input.md")
   }
-  //   {
-  //     path: "/input",
-  //     name: "/Input",
-  //     fnc: import("../docs/input.md")
-  //   }
 ];

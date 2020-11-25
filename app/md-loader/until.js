@@ -22,8 +22,18 @@ const deleteScript = str => {
     return str;
   }
 };
+const deleteStyle = str => {
+  const start = str.indexOf("<style>");
+  const end = str.indexOf("</style>");
+  if (start !== -1 && end !== -1) {
+    return str.slice(0, start) + str.slice(end + 8);
+  } else {
+    return str;
+  }
+};
 module.exports = {
   scriptExtract,
+  deleteStyle,
   deleteScript,
   templateExtract,
   styleExtract

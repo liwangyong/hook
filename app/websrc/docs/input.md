@@ -7,9 +7,9 @@ input 常用输入框
 :::demo HookInput 组件代码
 
 ```html
-<hook-input v-model="value"></hook-input>  
+<hook-input v-model="value"></hook-input>
 <script>
-  import { defineComponent } from "vue"
+  import { defineComponent } from "vue";
   export default defineComponent({
     data() {
       return {
@@ -24,14 +24,21 @@ input 常用输入框
 
 ## Attributes
 
-| 参数名称          | 说明     | 属性    | 默认值               |
-| :---------------- | :------- | :------ | :------------------- |
-| `width`           | 宽度     | Number  | 85                   |
-| `height`          | 高度     | Number  | 36                   |
-| `loading`         | 是否加载 | Boolean | false                |
-| `backgroundColor` | 背景色   | String  | rgba(0, 165, 237, 1) |
-| `textColor`       | 文字颜色 | String  | #fff                 |
-| `pressColor`      | 按压颜色 | String  | rgba(0, 140, 201, 1) |
-| `moireColor`      | 波浪颜色 | String  | rgba(0, 140, 201, 1) |
-| `duration`        | 动画时间 | Number  | 1.2                  |
-| `disabled`        | 是否禁用 | Boolean | false                |
+| 参数名称      | 说明     | 属性     | 默认值       |
+| :------------ | :------- | :------- | :----------- |
+| `disabled`    | 禁用     | Boolean  | false        |
+| `clearable`   | 高度     | Boolean  | true         |
+| `type`        | 类型     | String   | text         |
+| `autofocus`   | 聚焦     | Boolean  | false        |
+| `modelValue`  | 值       | String   | `null`       |
+| `validity`    | 验证函数 | Function | `null`       |
+| `errorText`   | 错误提示 | String   | 请输入有效值 |
+| `placeholder` | 文字提示 | String   | 请输入数据   |
+
+## Event
+
+| 参数名称 | 说明     | 属性   | 默认值 |
+| :------- | :------- | :----- | :----- |
+| `blur`   | 失去焦点 | String | `null` |
+| `change` | 改变值   | String | `null` |
+| `input`  | 输入值   | String | `null` |

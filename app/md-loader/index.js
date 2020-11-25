@@ -4,6 +4,7 @@ const {
   scriptExtract,
   styleExtract,
   templateExtract,
+  deleteStyle,
   deleteScript
 } = require("./until");
 const md = require("markdown-it")({
@@ -20,7 +21,7 @@ module.exports = content => {
     `
       <template>
         <div class='md-bg'>
-        ${deleteScript(md.render(content))}
+            ${deleteScript(deleteStyle(md.render(content)))}
         </div>
       </template>
       `
