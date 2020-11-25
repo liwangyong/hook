@@ -28,6 +28,7 @@
     "highlight.js": "^10.4.0",
     "markdown-it": "^12.0.2",
     "markdown-it-anchor": "^6.0.1",
+    "markdown-it-container": "^3.0.0",
     "markdown-it-table-of-contents": "^0.4.4",
     "path": "^0.12.7",
     "register-service-worker": "^1.7.1",

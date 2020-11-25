@@ -1,21 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const hljs = require("highlight.js"); // https://highlightjs.org/
+const { mdPlugin } = require("./until");
 const md = require("markdown-it")({
   html: true,
   xhtmlOut: true,
   linkify: true,
   typographer: true,
-  highlight: (html, type) => {
-    if (type) {
-      return html;
-    } else {
-      return `<div class='high-code'>
-        ${hljs.highlight("html", html).value}
-      </div>`;
-    }
-  }
+  highlight: () => " "
 });
+mdPlugin(md);
 module.exports = content => {
   const htmlsStr = `
   <template>

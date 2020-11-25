@@ -12,14 +12,25 @@
   .high-code {
     margin-top: 10px;
     padding: 20px;
-    display: flex;
-    align-items: center;
     background: #f2f2f2;
     border-radius: 2px;
+    .block {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+  .block {
+    display: block;
   }
   h2 {
     font-size: 22px;
     margin: 20px 0px 10px 0px;
+  }
+  details {
+    margin-top: 10px;
+    cursor: pointer;
   }
   table {
     border-collapse: collapse;

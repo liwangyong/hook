@@ -1,18 +1,13 @@
 ## Button 按钮
 
-水波纹常用的操作按钮。
+水波纹常用的操作按钮
 
 ## 使用示例
+:::demo HookButton组件代码
 ```html
-<hook-button></hook-button>
+<hook-button>按钮</hook-button>
 ```
-
-## 代码
-
-基础用法
-```
-<hook-button></hook-button>
-```
+:::
 
 ## Attributes
 
