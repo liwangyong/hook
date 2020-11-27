@@ -51,11 +51,11 @@ export default {
     },
     showArrow: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     showCircle: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   data() {
