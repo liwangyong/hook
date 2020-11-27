@@ -21,5 +21,10 @@ export const routerMenu: RouterMenu = [
     path: "/input",
     name: "/Input",
     fnc: import("../docs/input.md")
+  },
+  {
+    path: "/swiper",
+    name: "/swiper",
+    fnc: import("../docs/swiper.md")
   }
 ];

@@ -14,3 +14,5 @@ export { HookAlert };
 export { HookLoading }
 
 export { HookInput }
+import { HookHook Ui Swiper } from './hook-ui-swiper'
+export { HookHook Ui Swiper }

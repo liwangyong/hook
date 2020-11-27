@@ -16,3 +16,4 @@ export { HookAlert } from "../package/alert";
 
 export { HookLoading } from '../package/loading'
 export { HookInput } from '../package/input'
+export { HookHook Ui Swiper } from '../package/hook-ui-swiper'
