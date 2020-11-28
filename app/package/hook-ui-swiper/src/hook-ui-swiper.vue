@@ -5,7 +5,7 @@
   >
     <ul class="swiper-box">
       <li class="swiper-image" v-for="item in images" :key="item.id">
-        <a :href="'http://'+item.link" target='blank' v-if="item.link">
+        <a :href="'http://' + item.link" target="blank" v-if="item.link">
           <img
             :src="item.src"
             :title="item.title"
@@ -33,8 +33,16 @@
     </div>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import {
+  defineComponent,
+  onBeforeUnmount,
+  reactive,
+  onMounted,
+  toRefs,
+} from "vue";
+
+export default defineComponent({
   name: "Swiper",
   props: {
     images: {
@@ -58,80 +66,91 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
+  setup(props) {
+    const state = reactive({
       index: 0,
-    };
-  },
-  mounted() {
-    this.autoRun();
-  },
-  beforUnmount() {
-    this.stopMoving();
-  },
-  methods: {
-    stopMoving() {
-      if (this.timer) {
-        clearInterval(this.timer);
-        this.timer = null;
+      timer: null,
+    });
+
+    const stopMoving = (): void => {
+      if (state.timer) {
+        clearInterval(state.timer);
+        state.timer = null;
       }
-    },
-    startRun({ delay, len, moveDistance, swiperBox }) {
-      this.timer = setInterval(() => {
-        this.index += 1;
-        if (this.index === len) {
-          this.index = 0;
+    };
+    const startRun = ({ delay, len, moveDistance, swiperBox }): void => {
+      state.timer = setInterval(() => {
+        state.index += 1;
+        if (state.index === len) {
+          state.index = 0;
         }
         swiperBox.style.transform = `translateX(${
-          -moveDistance * this.index
+          -moveDistance * state.index
         }px)`;
       }, delay);
-    },
-    autoRun() {
+    };
+    const autoRun = () => {
       const [{ delay, images }, swiperBox, swiperItem] = [
-        this,
+        props,
         document.getElementsByClassName("swiper-box")[0],
         document.getElementsByClassName("swiper-image")[0],
       ];
-      console.log(images)
+
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
-      this.startRun({ delay, len, moveDistance, swiperBox });
-    },
-    move(direction) {
-      this.stopMoving();
+      startRun({ delay, len, moveDistance, swiperBox });
+    };
+    const move = (direction) => {
+      stopMoving();
       const [{ delay, images }, swiperBox, swiperItem] = [
-        this,
+        props,
         document.getElementsByClassName("swiper-box")[0],
         document.getElementsByClassName("swiper-image")[0],
       ];
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
 
       if (direction === "right") {
-        (this.index === len - 1 && (this.index = 0)) || (this.index += 1);
+        (state.index === len - 1 && (state.index = 0)) || (state.index += 1);
       }
       if (direction === "left") {
-        (this.index === 0 && (this.index = len - 1)) || (this.index -= 1);
+        (state.index === 0 && (state.index = len - 1)) || (state.index -= 1);
       }
 
-      swiperBox.style.transform = `translateX(${-moveDistance * this.index}px)`;
-      this.startRun({ delay, len, moveDistance, swiperBox });
-    },
-    choose(idx) {
-      this.stopMoving();
+      swiperBox.style.transform = `translateX(${
+        -moveDistance * state.index
+      }px)`;
+      startRun({ delay, len, moveDistance, swiperBox });
+    };
+    const choose = (idx) => {
+      stopMoving();
       const [{ delay, images }, swiperBox, swiperItem] = [
-        this,
+        props,
         document.getElementsByClassName("swiper-box")[0],
         document.getElementsByClassName("swiper-image")[0],
       ];
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
 
-      this.index = idx;
+      state.index = idx;
 
-      swiperBox.style.transform = `translateX(${-moveDistance * this.index}px)`;
-      this.startRun({ delay, len, moveDistance, swiperBox });
-    },
+      swiperBox.style.transform = `translateX(${
+        -moveDistance * state.index
+      }px)`;
+      startRun({ delay, len, moveDistance, swiperBox });
+    };
+
+    onMounted(() => {
+      autoRun();
+    });
+    onBeforeUnmount(() => {
+      stopMoving();
+    });
+
+    return toRefs({
+      ...state,
+      move,
+      choose
+    });
   },
-};
+});
 </script>
 <style lang="scss" scoped>
 .hook-swiper-box {
