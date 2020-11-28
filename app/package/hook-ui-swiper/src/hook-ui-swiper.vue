@@ -144,11 +144,11 @@ export default defineComponent({
       stopMoving();
     });
 
-    return toRefs({
-      ...state,
+    return {
+      ...toRefs(state),
       move,
       choose
-    });
+    }
   },
 });
 </script>

@@ -5,7 +5,7 @@
 ## 使用示例
 :::demo HookButton组件代码
 ```html
-<hook-ui-swiper :images="imgList" :width="480" :delay="3000"></hook-ui-swiper>
+<hook-ui-swiper :images="imgList" :width="480" :delay="3000" showCircle></hook-ui-swiper>
 <script>
   import { defineComponent } from "vue";
   export default defineComponent({
