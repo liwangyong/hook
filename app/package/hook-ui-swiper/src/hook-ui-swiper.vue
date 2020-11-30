@@ -39,7 +39,7 @@ import {
   onBeforeUnmount,
   reactive,
   onMounted,
-  toRefs,
+  toRefs
 } from "vue";
 
 export default defineComponent({
@@ -47,29 +47,29 @@ export default defineComponent({
   props: {
     images: {
       type: Array,
-      required: true,
+      required: true
     },
     delay: {
       type: Number,
-      default: 3000,
+      default: 3000
     },
     width: {
       type: Number,
-      default: 800,
+      default: 800
     },
     showArrow: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showCircle: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(props) {
     const state = reactive({
       index: 0,
-      timer: null,
+      timer: null
     });
 
     const stopMoving = (): void => {
@@ -84,27 +84,26 @@ export default defineComponent({
         if (state.index === len) {
           state.index = 0;
         }
-        swiperBox.style.transform = `translateX(${
-          -moveDistance * state.index
-        }px)`;
+        swiperBox.style.transform = `translateX(${-moveDistance *
+          state.index}px)`;
       }, delay);
     };
     const autoRun = () => {
       const [{ delay, images }, swiperBox, swiperItem] = [
         props,
         document.getElementsByClassName("swiper-box")[0],
-        document.getElementsByClassName("swiper-image")[0],
+        document.getElementsByClassName("swiper-image")[0]
       ];
 
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
       startRun({ delay, len, moveDistance, swiperBox });
     };
-    const move = (direction) => {
+    const move = direction => {
       stopMoving();
       const [{ delay, images }, swiperBox, swiperItem] = [
         props,
         document.getElementsByClassName("swiper-box")[0],
-        document.getElementsByClassName("swiper-image")[0],
+        document.getElementsByClassName("swiper-image")[0]
       ];
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
 
@@ -115,25 +114,23 @@ export default defineComponent({
         (state.index === 0 && (state.index = len - 1)) || (state.index -= 1);
       }
 
-      swiperBox.style.transform = `translateX(${
-        -moveDistance * state.index
-      }px)`;
+      (swiperBox as any).style.transform = `translateX(${-moveDistance *
+        state.index}px)`;
       startRun({ delay, len, moveDistance, swiperBox });
     };
-    const choose = (idx) => {
+    const choose = idx => {
       stopMoving();
       const [{ delay, images }, swiperBox, swiperItem] = [
         props,
         document.getElementsByClassName("swiper-box")[0],
-        document.getElementsByClassName("swiper-image")[0],
+        document.getElementsByClassName("swiper-image")[0]
       ];
       const [len, moveDistance] = [images.length, swiperItem.clientWidth];
 
       state.index = idx;
 
-      swiperBox.style.transform = `translateX(${
-        -moveDistance * state.index
-      }px)`;
+      (swiperBox as any).style.transform = `translateX(${-moveDistance *
+        state.index}px)`;
       startRun({ delay, len, moveDistance, swiperBox });
     };
 
@@ -148,8 +145,8 @@ export default defineComponent({
       ...toRefs(state),
       move,
       choose
-    }
-  },
+    };
+  }
 });
 </script>
 <style lang="scss" scoped>

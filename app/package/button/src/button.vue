@@ -3,7 +3,7 @@
     class="hook-button-box hook-flex-space"
     :class="[disabled && 'hook-button-disable']"
     @mousedown="changAssmblyType(2)"
-    ref="button"
+    ref="buttonEl"
     @mouseup="changAssmblyType(1)"
     @click="handleClick"
     @mouseenter="changAssmblyType(1)"
@@ -57,7 +57,7 @@ type DomPosition = {
   top: number;
   left: number;
 };
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, ref, onMounted } from "vue";
 export default defineComponent({
   name: "HookButton",
   props: {
@@ -110,16 +110,12 @@ export default defineComponent({
   components: {
     HookLoading
   },
-  data() {
-    return {
-      refButton: null,
-      currtWidth: 0
-    };
-  },
   emits: ["click"],
   setup(prop, { emit }) {
     const assemblyType = ref<CURRTTYPEENUM>(CURRTTYPEENUM.USUAL);
     const rippleArgs = ref<Array<DomPosition>>([]);
+    const buttonEl = ref(null);
+    const currtWidth = ref(0);
     const bgColor = computed((): string => {
       switch (assemblyType.value) {
         case CURRTTYPEENUM.USUAL:
@@ -140,22 +136,21 @@ export default defineComponent({
       });
       emit("click", e);
     };
+    const changAssmblyType = (type: CURRTTYPEENUM) => {
+      assemblyType.value = type;
+    };
+    onMounted(() => {
+      currtWidth.value = buttonEl.value.clientWidth;
+    });
     return {
       assemblyType,
       bgColor,
+      buttonEl,
+      changAssmblyType,
+      currtWidth,
       rippleArgs,
       handleClick
     };
-  },
-  mounted() {
-    this.refButton = this.$refs.button as HTMLElement;
-    const { refButton } = this;
-    this.currtWidth = refButton.clientWidth;
-  },
-  methods: {
-    changAssmblyType(type: CURRTTYPEENUM) {
-      this.assemblyType = type;
-    }
   }
 });
 </script>

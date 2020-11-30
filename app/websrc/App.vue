@@ -9,17 +9,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({
-  setup() {
-    // nextTick(() => {
-    //   hljs.configure({ useBR: true });
-    //   document.querySelectorAll("code").forEach((item: any) => {
-    //     console.log(item);
-    //     hljs.highlightBlock(item);
-    //   });
-    // });
-  }
-});
+export default defineComponent({});
 </script>
 <style lang="scss">
 .auto {
