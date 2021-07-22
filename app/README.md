@@ -25,4 +25,4 @@ Vue.component(hooks-button)
 ```
 
 ## Welcome
-有问题 欢迎 Issuse 🤔 🤔 🤔 [为啥我特么md转的文档那么那么的丑啊](https://github.com/liwangyong/hook/tree/main/app).
+轮子的一天 🤔 🤔 🤔 [为啥我特么md转的文档那么那么的丑啊](https://github.com/liwangyong/hook/tree/main/app).
